@@ -1,0 +1,34 @@
+---
+import { TwitterCardType } from '../enums/TwitterCardType';
+
+interface Props {
+	title?: string;
+	url?: string;
+	imageUrl?: string;
+	favIcon?: string;
+	favIconType?: string;
+	hexColor?: string;
+	cardType?: TwitterCardType;
+}
+
+const {
+	title = "Bims' Stuff",
+	url= "https://bims.sh",
+	imageUrl = "/image.png",
+	favIcon = "/image.png",
+	favIconType= "image/png",
+	hexColor= "#004E92",
+	cardType = TwitterCardType.summary
+} = Astro.props;
+---
+<head>
+	<meta content={title} property="og:title">
+	<meta content={title} name="twitter:title">
+	<meta content={url} property="og:url">
+	<meta content={imageUrl} property="og:image">
+	<meta content={imageUrl} name="twitter:image">
+	<meta content={cardType} name="twitter:card">
+	<meta content={hexColor} name="theme-color">
+	<link href={favIcon} rel="icon" type={favIconType}>
+	<title>{title}</title>
+</head>

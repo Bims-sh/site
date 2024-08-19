@@ -1,0 +1,48 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+	iconName: string;
+	buttonColor: string;
+	buttonText: string;
+	buttonUrl: string;
+	buttonTarget: string;
+}
+
+const { iconName, buttonColor, buttonText, buttonUrl, buttonTarget } = Astro.props;
+---
+<a class="social-btn" style={`background-color: ${buttonColor};`} href={buttonUrl} target={buttonTarget}>
+	<Icon name={iconName} class="social-btn-icon"></Icon>
+	<span class="social-btn-text">{buttonText}</span>
+</a>
+
+<style is:global>
+    .social-btn {
+        display: inline-flex;
+        align-items: center;
+        margin: .5em;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 1.2em;
+        box-shadow: -5px -5px 10px 0 rgba(0, 0, 0, .5), inset 5px 5px 10px 0 rgba(20, 20, 0, .12);
+        background-color: rgba(0, 0, 0, .2)
+    }
+
+    .social-btn .social-btn-icon {
+        display: inline-block;
+        padding: .5em;
+        background-color: rgba(0, 0, 0, .4);
+        border-radius: 4px 0 0 4px;
+        margin-right: .5em
+    }
+
+    .social-btn .social-btn-text {
+        display: inline-block;
+        padding-right: 0.5em;
+    }
+
+    .social-btn:hover {
+        opacity: .8
+    }
+</style>
