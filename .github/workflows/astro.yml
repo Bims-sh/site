@@ -20,29 +20,6 @@ jobs:
         uses: withastro/action@v2
         with:
           node-version: 21
-
-      - name: Install Minification Tools
-        run: npm install -g terser cssnano-cli html-minifier-cli
-
-      - name: Minify Assets
-        run: |
-          if ls dist/**/*.js >/dev/null 2>&1; then
-          terser dist/**/*.js --compress --mangle --output-dir dist
-          else
-          echo "No JS files found to minify."
-          fi
-          
-          if ls dist/**/*.css >/dev/null 2>&1; then
-          cssnano-cli dist/**/*.css --output-dir dist
-          else
-          echo "No CSS files found to minify."
-          fi
-          
-          if ls dist/**/*.html >/dev/null 2>&1; then
-          html-minifier-cli --input-dir dist --output-dir dist --file-pattern '**/*.html' --collapse-whitespace --remove-comments --minify-css --minify-js
-          else
-          echo "No HTML files found to minify."
-          fi
     
   deploy:
     needs: build
