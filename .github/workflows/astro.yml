@@ -20,7 +20,18 @@ jobs:
         uses: withastro/action@v2
         with:
           node-version: 21
-          
+
+      # Install minification tools globally
+      - name: Install Minification Tools
+        run: npm install -g terser cssnano-cli html-minifier-cli
+
+      # Minify JS, CSS, and HTML
+      - name: Minify Assets
+        run: |
+          terser dist/**/*.js --compress --mangle --output-dir dist
+          cssnano-cli dist/**/*.css --output-dir dist
+          html-minifier-cli --input-dir dist --output-dir dist --file-pattern '**/*.html' --collapse-whitespace --remove-comments --minify-css --minify-js
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
