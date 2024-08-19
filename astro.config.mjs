@@ -5,5 +5,6 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
   integrations: [icon()],
-  compressHTML: true
+  compressHTML: true,
+  site: 'https://bims.sh',
 });
